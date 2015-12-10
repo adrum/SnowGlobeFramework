@@ -28,6 +28,7 @@ DESC
   # s.social_media_url = 'https://twitter.com/stringcode'
 
   s.platform     = :ios, '8.0'
+  s.tvos.deployment_target = '9.0'
   s.requires_arc = true
 
   s.source_files = 'Podyfied/SnowGlobe/Pod/Classes/**/*' , 'Pod/Classes/**/*'
@@ -36,7 +37,7 @@ DESC
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'GameController'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
 

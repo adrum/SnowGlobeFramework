@@ -6,7 +6,15 @@
 //
 
 import UIKit
+
+#if TARGET_OS_IPHONE// || TARGET_OS_TV
 import CoreMotion
+#endif
+
+#if TARGET_OS_TV
+import GameController
+#endif
+
 import AudioToolbox
 
 private let lifetimeKey = "lifetime"
@@ -161,8 +169,10 @@ public class SnowGlobeView: UIView {
         emitter.renderMode = kCAEmitterLayerOldestLast
         emitter.lifetime = 0
     }
-    
+
+
     private func shouldShakeToSnow(shakeToSnow: Bool) {
+#if TARGET_OS_IPHONE
         let motionManager = CMMotionManager.sharedManager
         motionManager.accelerometerUpdateInterval = 0.15
         if motionManager.accelerometerActive || !shakeToSnow {
@@ -179,6 +189,7 @@ public class SnowGlobeView: UIView {
                 dispatch_async(dispatch_get_main_queue()) { welf.animate(toLifetime: magnitude) }
             }
         }
+#endif
     }
     
     private func animate(toLifetime rate:Double) {
